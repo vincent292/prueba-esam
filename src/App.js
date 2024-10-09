@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ButtonComponent from './Button/ButtonComponent';
+import '@mdi/font/css/materialdesignicons.min.css'; 
+import './App.css'; 
 
 function App() {
+  const [buttons, setButtons] = useState([
+    { title: "Perfil Personal", image: "mdi-account-box-outline" },
+    { title: "Registro de Programas", image: "mdi-text-box-plus-outline" },
+    { title: "Docentes", image: "mdi-account-search-outline" },
+  ]);
+
+  const addButton = () => {
+    const newButton = { title: "Postulantes", image: "mdi-account-question-outline" };
+    setButtons([...buttons, newButton]);
+  };
+
   return (
     <main className="v-main">
       <header
@@ -25,27 +38,15 @@ function App() {
       <h1>Menú principal</h1>
       <div className="v-container v-locale--is-ltr">
         <div className="v-row">
-          <div className="v-col">
-            <ButtonComponent title="Perfil Personal" image="mdi-account-box-outline" />
-          </div>
-          <div className="v-col">
-            <ButtonComponent title="Registro de Programas" image="mdi-text-box-plus-outline" />
-          </div>
-          <div className="v-col">
-            <ButtonComponent title="Docentes" image="mdi-account-search-outline" />
-          </div>
+          {buttons.map((button, index) => (
+            <div className="v-col" key={index}>
+              <ButtonComponent title={button.title} image={button.image} />
+            </div>
+          ))}
         </div>
-        <div className="v-row">
-          <div className="v-col">
-            <ButtonComponent title="Postulantes" image="mdi-account-question-outline" />
-          </div>
-          <div className="v-col">
-            <ButtonComponent title="Programas" image="mdi-text-box-outline" />
-          </div>
-          <div className="v-col">
-            <ButtonComponent title="Certificaciones Docentes" image="mdi-certificate-outline" />
-          </div>
-        </div>
+        <button onClick={addButton} style={{ margin: '20px', padding: '10px 20px' }}>
+          Agregar más "Postulantes"
+        </button>
       </div>
       <footer className="v-footer v-theme--light custom-footer" style={{ bottom: 0 }}>
         <div className="v-container v-container--fluid v-locale--is-ltr">
@@ -60,7 +61,6 @@ function App() {
                   <i className="mdi-facebook mdi v-icon notranslate v-theme--light" aria-hidden="true"></i>
                 </span>
               </a>
-              {/* Agrega más enlaces de redes sociales según sea necesario */}
             </div>
             <div className="v-col-md-6 v-col-12 text-center text-md-right">
               <div className="v-spacer"></div>
