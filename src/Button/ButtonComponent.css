@@ -1,0 +1,14 @@
+.button-style {
+    height: 300px;
+    width: 300px;
+}
+   
+  
+  .text-position {
+  
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  
